@@ -13,7 +13,7 @@ function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h3 className="text-lg font-semibold mb-4">GoldenCity</h3>
             <p className="text-secondary-300 dark:text-secondary-400 text-sm">
@@ -26,7 +26,7 @@ function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1, duration: 0.5 }}
+            transition={{ delay: 0.08, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -41,7 +41,7 @@ function Footer() {
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 + index * 0.05, duration: 0.4 }}
+                  transition={{ delay: 0.08 + index * 0.05, duration: 0.5, ease: [0.34, 1.56, 0.64, 1] }}
                 >
                   <Link to={link.href} className="text-secondary-300 dark:text-secondary-400 hover:text-white text-sm transition-colors relative group">
                     {link.name}
@@ -61,14 +61,14 @@ function Footer() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.5 }}
+            transition={{ delay: 0.16, duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2">
               <motion.li 
                 className="flex items-center text-secondary-300 dark:text-secondary-400 text-sm"
                 whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 <FiPhone className="mr-2" />
                 <span>+1 (555) 123-4567</span>
@@ -76,7 +76,7 @@ function Footer() {
               <motion.li 
                 className="flex items-center text-secondary-300 dark:text-secondary-400 text-sm"
                 whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 <FiMail className="mr-2" />
                 <span>contact@GoldenCity.com</span>
@@ -84,7 +84,7 @@ function Footer() {
               <motion.li 
                 className="flex items-center text-secondary-300 dark:text-secondary-400 text-sm"
                 whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
               >
                 <FiMapPin className="mr-2" />
                 <span>123 Property Street, Real City, RC 12345</span>

@@ -229,26 +229,26 @@ function Home() {
           />
           <motion.div 
             className="absolute inset-0 bg-black bg-opacity-50"
-            initial={{ opacity: 0.5 }}
-            animate={{ opacity: 0.55 }}
-            transition={{ duration: 4, repeat: Infinity, repeatType: 'reverse' }}
+            initial={{ opacity: 0.48 }}
+            animate={{ opacity: 0.58 }}
+            transition={{ duration: 6, repeat: Infinity, repeatType: 'reverse', ease: [0.42, 0, 0.58, 1] }}
           />
         </motion.div>
         
         <div className="relative container text-center text-white space-y-8">
           <motion.h1 
             className="text-5xl font-bold"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             Invest and Trade in Real Estate with Cryptocurrency
           </motion.h1>
           <motion.p 
             className="text-xl max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.75, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             Own fractional shares of premium properties through NFTs. Start investing with as little as $10.
           </motion.p>
@@ -266,11 +266,11 @@ function Home() {
             <motion.div
               key={index}
               className="relative"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.5, ease: "easeOut" }}
+              transition={{ delay: index * 0.15, duration: 0.4, ease: "easeOut" }}
             >
               <div className="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-2xl text-center transition-all duration-300">
                 <motion.div 

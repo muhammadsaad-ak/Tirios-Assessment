@@ -81,7 +81,7 @@ function About() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="max-w-3xl mx-auto text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -106,7 +106,7 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.5, ease: "easeOut" }}
+                transition={{ delay: index * 0.1, duration: 0.55, ease: [0.34, 1.56, 0.64, 1] }}
                 className="bg-white dark:bg-secondary-800 rounded-lg p-6 text-center shadow-md dark:shadow-lg hover:shadow-xl dark:hover:shadow-2xl transition-shadow duration-300"
               >
                 <motion.div
@@ -119,7 +119,7 @@ function About() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15 + 0.1, duration: 0.5 }}
+                  transition={{ delay: index * 0.1 + 0.12, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className="text-3xl font-bold text-secondary-900 dark:text-secondary-100 mb-2"
                 >
                   {stat.value}

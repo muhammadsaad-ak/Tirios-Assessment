@@ -99,7 +99,7 @@ function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <div className="pt-2 pb-3 space-y-1">
                 {navigation.map((item, index) => (
@@ -108,7 +108,7 @@ function Navbar() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
-                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                    transition={{ delay: index * 0.06, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                   >
                     <Link
                       to={item.href}
@@ -127,7 +127,7 @@ function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{ delay: navigation.length * 0.05, duration: 0.3 }}
+                  transition={{ delay: navigation.length * 0.06, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
                 >
                   Connect
                 </motion.button>

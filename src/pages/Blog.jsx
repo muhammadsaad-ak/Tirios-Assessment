@@ -145,11 +145,11 @@ function Blog() {
           {filteredPosts.map((post, index) => (
             <motion.article
               key={post.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -8, transition: { duration: 0.28 } }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.12, duration: 0.45, ease: 'easeOut' }}
+              transition={{ delay: index * 0.09, duration: 0.4, ease: "easeOut" }}
               className="bg-white dark:bg-secondary-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden h-full hover:shadow-xl dark:hover:shadow-2xl transition-shadow duration-300"
             >
               <Link to={`/blog/${post.slug}`}>

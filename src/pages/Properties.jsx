@@ -275,11 +275,11 @@ function Properties() {
             <Link key={property.id} to={`/properties/${property.id}`}>
               <motion.div
                 className="bg-white dark:bg-secondary-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden h-full hover:shadow-xl dark:hover:shadow-2xl transition-shadow duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.15, duration: 0.5, ease: "easeOut" }}
+                transition={{ delay: index * 0.1, duration: 0.4, ease: "easeOut" }}
               >
                 <div className="relative h-48 overflow-hidden">
                   <motion.img
@@ -372,7 +372,7 @@ function Properties() {
                         initial={{ width: 0 }}
                         whileInView={{ width: property.metrics.funded }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+                        transition={{ delay: 0.25, duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94] }}
                         style={{ width: property.metrics.funded }}
                       />
                     </motion.div>
