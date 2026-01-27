@@ -49,7 +49,7 @@ function BlogPost() {
   };
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950">
       {/* Hero Section */}
       <div className="relative h-[400px]">
         <img
@@ -96,12 +96,13 @@ function BlogPost() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -6 }}
             transition={{ delay: 0.2 }}
             className="lg:col-span-2"
           >
-            <div className="bg-white rounded-lg shadow-md p-8">
+            <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-8">
               <div 
-                className="prose prose-lg max-w-none"
+                className="prose prose-lg dark:prose-invert max-w-none text-secondary-700 dark:text-secondary-300"
                 dangerouslySetInnerHTML={{ __html: post.content }}
               />
             </div>
@@ -115,38 +116,35 @@ function BlogPost() {
           >
             <div className="space-y-6">
               {/* Share */}
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
+              <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6">
+                <h3 className="text-lg font-semibold dark:text-white mb-4 flex items-center">
                   <FiShare2 className="mr-2" />
                   Share this article
                 </h3>
                 <div className="flex space-x-4">
-                  <button className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200">
+                  <motion.button whileHover={{ scale: 1.06 }} className="p-2 rounded-full bg-blue-100 text-blue-600 hover:bg-blue-200">
                     <FaFacebook size={20} />
-                  </button>
-                  <button className="p-2 rounded-full bg-sky-100 text-sky-500 hover:bg-sky-200">
+                  </motion.button>
+                  <motion.button whileHover={{ scale: 1.06 }} className="p-2 rounded-full bg-sky-100 text-sky-500 hover:bg-sky-200">
                     <FaTwitter size={20} />
-                  </button>
-                  <button className="p-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200">
+                  </motion.button>
+                  <motion.button whileHover={{ scale: 1.06 }} className="p-2 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-200">
                     <FaLinkedin size={20} />
-                  </button>
+                  </motion.button>
                 </div>
               </div>
 
               {/* Tags */}
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h3 className="text-lg font-semibold mb-4 flex items-center">
+              <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6">
+                <h3 className="text-lg font-semibold dark:text-white mb-4 flex items-center">
                   <FiTag className="mr-2" />
                   Tags
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {post.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-secondary-100 text-secondary-600 rounded-full text-sm"
-                    >
+                    <motion.span key={index} whileHover={{ scale: 1.05 }} className="px-3 py-1 bg-secondary-100 dark:bg-secondary-700 text-secondary-600 dark:text-secondary-300 rounded-full text-sm">
                       {tag}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </div>

@@ -74,9 +74,9 @@ function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950">
       {/* Hero Section */}
-      <section className="relative bg-secondary-900 text-white py-24">
+      <section className="relative bg-secondary-900 dark:bg-black text-white py-24">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -102,15 +102,29 @@ function About() {
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg p-6 text-center shadow-md"
+                transition={{ delay: index * 0.15, duration: 0.5, ease: "easeOut" }}
+                className="bg-white dark:bg-secondary-800 rounded-lg p-6 text-center shadow-md dark:shadow-lg hover:shadow-xl dark:hover:shadow-2xl transition-shadow duration-300"
               >
-                <stat.icon className="w-8 h-8 mx-auto mb-4 text-primary-600" />
-                <div className="text-3xl font-bold text-secondary-900 mb-2">{stat.value}</div>
-                <div className="text-secondary-600">{stat.label}</div>
+                <motion.div
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <stat.icon className="w-8 h-8 mx-auto mb-4 text-primary-600 dark:text-primary-400" />
+                </motion.div>
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15 + 0.1, duration: 0.5 }}
+                  className="text-3xl font-bold text-secondary-900 dark:text-secondary-100 mb-2"
+                >
+                  {stat.value}
+                </motion.div>
+                <div className="text-secondary-600 dark:text-secondary-400">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -118,11 +132,11 @@ function About() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-secondary-800">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-            <p className="text-lg text-secondary-600">
+            <p className="text-lg text-secondary-600 dark:text-secondary-400">
               To democratize real estate investment by leveraging blockchain technology, 
               making property ownership accessible to investors worldwide through 
               fractional ownership and cryptocurrency transactions.
@@ -136,11 +150,11 @@ function About() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <div className="bg-primary-50 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <FaHandshake className="w-8 h-8 text-primary-600" />
+              <div className="bg-primary-50 dark:bg-primary-900 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <FaHandshake className="w-8 h-8 text-primary-600 dark:text-primary-400" />
               </div>
               <h3 className="text-xl font-semibold mb-4">Accessibility</h3>
-              <p className="text-secondary-600">
+              <p className="text-secondary-600 dark:text-secondary-400">
                 Making real estate investment available to everyone through fractional ownership 
                 and cryptocurrency payments.
               </p>
@@ -153,11 +167,11 @@ function About() {
               transition={{ delay: 0.2 }}
               className="text-center"
             >
-              <div className="bg-primary-50 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <FiShield className="w-8 h-8 text-primary-600" />
+              <div className="bg-primary-50 dark:bg-primary-900 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <FiShield className="w-8 h-8 text-primary-600 dark:text-primary-400" />
               </div>
               <h3 className="text-xl font-semibold mb-4">Security</h3>
-              <p className="text-secondary-600">
+              <p className="text-secondary-600 dark:text-secondary-400">
                 Ensuring secure transactions through blockchain technology and smart contracts.
               </p>
             </motion.div>
@@ -169,11 +183,11 @@ function About() {
               transition={{ delay: 0.4 }}
               className="text-center"
             >
-              <div className="bg-primary-50 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <FiGlobe className="w-8 h-8 text-primary-600" />
+              <div className="bg-primary-50 dark:bg-primary-900 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                <FiGlobe className="w-8 h-8 text-primary-600 dark:text-primary-400" />
               </div>
               <h3 className="text-xl font-semibold mb-4">Global Reach</h3>
-              <p className="text-secondary-600">
+              <p className="text-secondary-600 dark:text-secondary-400">
                 Connecting property investors and opportunities worldwide through our platform.
               </p>
             </motion.div>
@@ -193,7 +207,7 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
+                className="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden"
               >
                 <img
                   src={member.image}
@@ -201,9 +215,9 @@ function About() {
                   className="w-full h-64 object-cover"
                 />
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-primary-600 font-medium mb-4">{member.role}</p>
-                  <p className="text-secondary-600 text-sm">{member.bio}</p>
+                  <h3 className="text-xl font-semibold dark:text-white mb-2">{member.name}</h3>
+                  <p className="text-primary-600 dark:text-primary-400 font-medium mb-4">{member.role}</p>
+                  <p className="text-secondary-600 dark:text-secondary-400 text-sm">{member.bio}</p>
                 </div>
               </motion.div>
             ))}
@@ -212,7 +226,7 @@ function About() {
       </section>
 
       {/* Partners Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-secondary-800">
         <div className="container">
           <h2 className="text-3xl font-bold text-center mb-12">Supported Cryptocurrencies</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
@@ -226,7 +240,7 @@ function About() {
                 className="text-center"
               >
                 <partner.icon className={`w-16 h-16 mx-auto mb-4 ${partner.color}`} />
-                <h3 className="text-xl font-semibold">{partner.name}</h3>
+                <h3 className="text-xl font-semibold dark:text-white">{partner.name}</h3>
               </motion.div>
             ))}
           </div>
@@ -242,7 +256,7 @@ function About() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-white p-6 rounded-lg shadow-md text-center"
+              className="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-md text-center"
             >
               <FiAward className="w-12 h-12 mx-auto mb-4 text-primary-600" />
               <h3 className="text-xl font-semibold mb-2">Best Blockchain Innovation</h3>
@@ -254,7 +268,7 @@ function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-white p-6 rounded-lg shadow-md text-center"
+              className="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-md text-center"
             >
               <FiBriefcase className="w-12 h-12 mx-auto mb-4 text-primary-600" />
               <h3 className="text-xl font-semibold mb-2">Fastest Growing PropTech</h3>
@@ -266,7 +280,7 @@ function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="bg-white p-6 rounded-lg shadow-md text-center"
+              className="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-md text-center"
             >
               <FiShield className="w-12 h-12 mx-auto mb-4 text-primary-600" />
               <h3 className="text-xl font-semibold mb-2">Most Secure Platform</h3>

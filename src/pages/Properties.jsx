@@ -150,15 +150,15 @@ function Properties() {
   });
 
   return (
-    <div className="min-h-screen bg-secondary-50">
+    <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-white dark:bg-secondary-800 shadow">
         <div className="container py-6">
           <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold">Investment Properties</h1>
+            <h1 className="text-3xl font-bold dark:text-white">Investment Properties</h1>
             <div className="flex items-center space-x-4">
               <button
-                className={`p-2 rounded-md ${showFilters ? 'bg-primary-100 text-primary-600' : 'hover:bg-secondary-100'}`}
+                className={`p-2 rounded-md ${showFilters ? 'bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400' : 'hover:bg-secondary-100 dark:hover:bg-secondary-700'} transition-colors`}
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <FiFilter size={20} />
@@ -170,15 +170,15 @@ function Properties() {
 
       {/* Filters */}
       {showFilters && (
-        <div className="bg-white shadow-md border-t">
+        <div className="bg-white dark:bg-secondary-800 shadow-md border-t border-secondary-200 dark:border-secondary-700">
           <div className="container py-6">
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
               <div>
-                <label className="block text-sm font-medium text-secondary-700 mb-1">
+                <label className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">
                   Price Range
                 </label>
                 <select
-                  className="input"
+                  className="input dark:bg-secondary-700 dark:border-secondary-600"
                   value={filters.priceRange}
                   onChange={(e) => handleFilterChange('priceRange', e.target.value)}
                 >
@@ -272,101 +272,146 @@ function Properties() {
       <div className="container py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {sortedProperties.map((property, index) => (
-            <motion.div
-              key={property.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Link to={`/properties/${property.id}`}>
-                <div className="relative h-48">
-                  <img
+            <Link key={property.id} to={`/properties/${property.id}`}>
+              <motion.div
+                className="bg-white dark:bg-secondary-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden h-full hover:shadow-xl dark:hover:shadow-2xl transition-shadow duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.15, duration: 0.5, ease: "easeOut" }}
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <motion.img
                     src={property.image}
                     alt={property.title}
                     className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.15 }}
+                    transition={{ duration: 0.5 }}
                   />
-                  <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-primary-600 font-semibold">
+                  <motion.div 
+                    className="absolute top-4 right-4 bg-white dark:bg-secondary-700 px-3 py-1 rounded-full text-primary-600 dark:text-primary-400 font-semibold"
+                    whileHover={{ scale: 1.05 }}
+                  >
                     {property.status}
-                  </div>
+                  </motion.div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
-                  <p className="text-secondary-600 mb-4">{property.location}</p>
+                  <h3 className="text-xl font-semibold dark:text-white mb-2 line-clamp-2">{property.title}</h3>
+                  <p className="text-secondary-600 dark:text-secondary-400 mb-4">{property.location}</p>
 
                   {/* Price and ROI */}
                   <div className="flex justify-between items-center mb-4">
                     <div>
-                      <p className="text-sm text-secondary-500">Investment Price</p>
+                      <p className="text-sm text-secondary-500 dark:text-secondary-400">Investment Price</p>
                       <div className="flex items-center">
-                        <FiDollarSign className="text-primary-600" />
-                        <span className="font-semibold">${property.price.usd.toLocaleString()}</span>
+                        <FiDollarSign className="text-primary-600 dark:text-primary-400" />
+                        <span className="font-semibold dark:text-white">${property.price.usd.toLocaleString()}</span>
                       </div>
-                      <div className="flex items-center text-sm text-primary-600">
+                      <div className="flex items-center text-sm text-primary-600 dark:text-primary-400">
                         <FaEthereum className="mr-1" />
                         <span>{property.price.eth} ETH</span>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <p className="text-sm text-secondary-500">Annual ROI</p>
-                      <div className="flex items-center justify-end text-green-600">
-                        <FiTrendingUp className="mr-1" />
+                    <motion.div 
+                      className="text-right"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <p className="text-sm text-secondary-500 dark:text-secondary-400">Annual ROI</p>
+                      <div className="flex items-center justify-end text-green-600 dark:text-green-400">
+                        <motion.div whileHover={{ rotate: 10 }} transition={{ type: "spring" }}>
+                          <FiTrendingUp className="mr-1" />
+                        </motion.div>
                         <span className="font-semibold">{property.roi}</span>
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Investment Metrics */}
                   <div className="space-y-2 mb-4">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Monthly Income</span>
-                      <span className="font-medium">{property.metrics.monthlyIncome}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Appreciation</span>
-                      <span className="font-medium">{property.metrics.appreciation}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Min Investment</span>
-                      <span className="font-medium">{property.metrics.minInvestment}</span>
-                    </div>
+                    <motion.div 
+                      className="flex justify-between text-sm"
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      <span className="text-secondary-600 dark:text-secondary-400">Monthly Income</span>
+                      <span className="font-medium dark:text-white">{property.metrics.monthlyIncome}</span>
+                    </motion.div>
+                    <motion.div 
+                      className="flex justify-between text-sm"
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      <span className="text-secondary-600 dark:text-secondary-400">Appreciation</span>
+                      <span className="font-medium dark:text-white">{property.metrics.appreciation}</span>
+                    </motion.div>
+                    <motion.div 
+                      className="flex justify-between text-sm"
+                      initial={{ opacity: 0.7 }}
+                      whileHover={{ opacity: 1 }}
+                    >
+                      <span className="text-secondary-600 dark:text-secondary-400">Min Investment</span>
+                      <span className="font-medium dark:text-white">{property.metrics.minInvestment}</span>
+                    </motion.div>
                   </div>
 
                   {/* Funding Progress */}
                   <div className="mb-4">
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-secondary-600">Funding Progress</span>
-                      <span className="font-medium">{property.metrics.funded}</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">Funding Progress</span>
+                      <span className="font-medium dark:text-white">{property.metrics.funded}</span>
                     </div>
-                    <div className="w-full bg-secondary-100 rounded-full h-2">
-                      <div
-                        className="bg-primary-600 h-2 rounded-full"
+                    <motion.div 
+                      className="w-full bg-secondary-100 dark:bg-secondary-700 rounded-full h-2 overflow-hidden"
+                      whileInView={{ opacity: 1 }}
+                      initial={{ opacity: 0 }}
+                    >
+                      <motion.div
+                        className="bg-gradient-to-r from-primary-500 to-primary-600 h-2 rounded-full"
+                        initial={{ width: 0 }}
+                        whileInView={{ width: property.metrics.funded }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
                         style={{ width: property.metrics.funded }}
                       />
-                    </div>
+                    </motion.div>
                   </div>
 
                   {/* Token Details */}
-                  <div className="bg-secondary-50 rounded-lg p-3 mb-4">
+                  <motion.div 
+                    className="bg-secondary-50 dark:bg-secondary-700 rounded-lg p-3 mb-4"
+                    whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+                  >
                     <div className="flex justify-between text-sm">
-                      <span className="text-secondary-600">Available Tokens</span>
-                      <span className="font-medium">
+                      <span className="text-secondary-600 dark:text-secondary-400">Available Tokens</span>
+                      <span className="font-medium dark:text-white">
                         {property.tokenDetails.availableTokens.toLocaleString()} / {property.tokenDetails.totalTokens.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm mt-1">
-                      <span className="text-secondary-600">Token Price</span>
-                      <span className="font-medium">{property.tokenDetails.tokenPrice}</span>
+                      <span className="text-secondary-600 dark:text-secondary-400">Token Price</span>
+                      <span className="font-medium dark:text-white">{property.tokenDetails.tokenPrice}</span>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <button className="btn w-full flex items-center justify-center">
-                    Invest Now
-                    <FiArrowRight className="ml-2" />
-                  </button>
+                  <motion.button 
+                    className="btn w-full flex items-center justify-center hover:shadow-lg transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <motion.span
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 4 }}
+                      className="flex items-center"
+                    >
+                      Invest Now
+                      <FiArrowRight className="ml-2" />
+                    </motion.span>
+                  </motion.button>
                 </div>
-              </Link>
-            </motion.div>
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

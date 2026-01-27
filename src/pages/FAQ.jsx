@@ -186,38 +186,61 @@ function FAQ() {
  
 
   return (
-    <div className="min-h-screen bg-secondary-50 py-16">
+    <div className="min-h-screen bg-secondary-50 dark:bg-secondary-950 py-16">
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-3xl mx-auto"
         >
-          <h1 className="text-4xl font-bold text-center mb-4">Frequently Asked Questions</h1>
-          <p className="text-secondary-600 text-center mb-12">
+          <h1 className="text-4xl font-bold dark:text-white text-center mb-4">Frequently Asked Questions</h1>
+          <p className="text-secondary-600 dark:text-secondary-400 text-center mb-12">
             Find answers to common questions about our platform, cryptocurrency payments, and real estate investment.
           </p>
 
           <div className="space-y-8">
             {faqSections.map((section, sectionIndex) => (
-              <div key={sectionIndex} className="bg-white rounded-lg shadow-md overflow-hidden">
-                <h2 className="text-xl font-semibold p-6 bg-secondary-50">
+              <motion.div 
+                key={sectionIndex} 
+                className="bg-white dark:bg-secondary-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden hover:shadow-lg dark:hover:shadow-2xl transition-shadow duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: sectionIndex * 0.1, duration: 0.5, ease: "easeOut" }}
+              >
+                <h2 className="text-xl font-semibold dark:text-white p-6 bg-secondary-50 dark:bg-secondary-700">
                   {section.title}
                 </h2>
-                <div className="divide-y divide-secondary-100">
+                <div className="divide-y divide-secondary-100 dark:divide-secondary-700">
                   {section.questions.map((item, questionIndex) => (
-                    <div key={questionIndex} className="p-6">
-                      <button
-                        className="w-full flex justify-between items-center text-left"
+                    <motion.div 
+                      key={questionIndex} 
+                      className="p-6"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: sectionIndex * 0.1 + questionIndex * 0.02, duration: 0.4 }}
+                    >
+                      <motion.button
+                        className="w-full flex justify-between items-center text-left hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
                         onClick={() => toggleSection(section.title, questionIndex)}
+                        whileHover={{ x: 4 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <span className="font-medium">{item.question}</span>
-                        {openSections[`${section.title}-${questionIndex}`] ? (
-                          <FiChevronUp className="flex-shrink-0 ml-4" />
-                        ) : (
-                          <FiChevronDown className="flex-shrink-0 ml-4" />
-                        )}
-                      </button>
+                        <span className="font-medium dark:text-white">{item.question}</span>
+                        <motion.div
+                          initial={{ rotate: 0 }}
+                          animate={{ rotate: openSections[`${section.title}-${questionIndex}`] ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex-shrink-0 ml-4"
+                        >
+                          {openSections[`${section.title}-${questionIndex}`] ? (
+                            <FiChevronUp className="text-primary-600 dark:text-primary-400" />
+                          ) : (
+                            <FiChevronDown className="text-secondary-600 dark:text-secondary-400" />
+                          )}
+                        </motion.div>
+                      </motion.button>
                       <AnimatePresence>
                         {openSections[`${section.title}-${questionIndex}`] && (
                           <motion.div
@@ -227,16 +250,16 @@ function FAQ() {
                             transition={{ duration: 0.3 }}
                             className="overflow-hidden"
                           >
-                            <p className="mt-4 text-secondary-600">
+                            <p className="mt-4 text-secondary-600 dark:text-secondary-400">
                               {item.answer}
                             </p>
                           </motion.div>
                         )}
                       </AnimatePresence>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </motion.div>
